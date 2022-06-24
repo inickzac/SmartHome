@@ -10,13 +10,13 @@ namespace Persistence
 {
     public class RepositoryDbContext : DbContext
     {
-        public RepositoryDbContext(DbContextOptions options)
+        public RepositoryDbContext(DbContextOptions<RepositoryDbContext> options)
             : base(options)
         {
         }
 
 
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
 
     }
 }

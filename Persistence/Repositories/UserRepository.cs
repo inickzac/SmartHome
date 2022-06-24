@@ -21,7 +21,7 @@ namespace Persistence.Repositories
 
         public async Task<User> GetByIdAsync(int accountId)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync((u) => u.Id == accountId);
+            return null;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 
@@ -12,17 +14,20 @@ namespace Presentation.Controllers
     {
         private readonly IServiceManager _serviceManager;
 
-        public UserController(IServiceManager serviceManager)
+        private readonly UserManager<User> _userManager;
+
+        public UserController(IServiceManager serviceManager, UserManager<User> userManager)
         {
             _serviceManager = serviceManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAccounts(int id)
         {
-            var accountsDto = await _serviceManager.UserService.GetByIdAsync(id);
+           var bb = await _userManager.CreateAsync(new User() { UserName = "fgdfg" }, "55666");
 
-            return Ok(accountsDto);
+            return Ok(bb);
         }
     }
 }

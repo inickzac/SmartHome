@@ -10,19 +10,23 @@ namespace Persistence.Repositories
 {
     public sealed class RepositoryManager : IRepositoryManager
     {
+        private readonly RepositoryDbContext _context;
+
         private readonly Lazy<IUserRepository> _userRepository;
 
+        
         public RepositoryManager(RepositoryDbContext dbContext)
         {
+            _context = dbContext;
+            
             _userRepository = new Lazy<IUserRepository>(() => new UserRepository(dbContext));
         }
 
         
-
-        public IUserRepository UserRepository { get; }
+        public IUserRepository UserRepository => _userRepository.Value;
         public IGenericRepository<T> GetGenericRepository<T>() where T : class
         {
-            throw new NotImplementedException();
+            return new GenericRepository<T>(_context);
         }
     }
 }

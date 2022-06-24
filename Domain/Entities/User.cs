@@ -1,9 +1,10 @@
-﻿namespace Domain.Entities
-{
-    public class User
-    {
-        public int Id { get; set; }
+﻿
+using Microsoft.AspNetCore.Identity;
 
-        public string Name { get; set; }
+namespace Domain.Entities
+{
+    public class User : IdentityUser
+    {
+
     }
 }
